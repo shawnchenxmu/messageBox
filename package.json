@@ -4,16 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development gulp",
+    "production": "NODE_ENV=production gulp"
   },
   "repository": {
     "type": "git",
     "url": "git+https://shawnchenxmu@github.com/shawnchenxmu/messageBox.git"
   },
-  "author": "",
+  "author": "halloween",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shawnchenxmu/messageBox/issues"
   },
-  "homepage": "https://github.com/shawnchenxmu/messageBox#readme"
+  "homepage": "https://github.com/shawnchenxmu/messageBox#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
