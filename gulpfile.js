@@ -1,4 +1,8 @@
-const gulp = require('gulp');
+const gulp = require('gulp')
+const del = require('del')
+const less = require('gulp-less')
+const rename = require('gulp-rename')
+const replace = require('gulp-replace')
 
 const paths = {
     src: {
@@ -6,7 +10,8 @@ const paths = {
         imgDir: 'src/img',
         lessDir: 'src/assets/less',
         lessFiles: 'src/**/*.less',
-        baseFiles: ['src/**/*.{png,js,json}', '!src/assets/**/*', '!src/image/**/*']
+        baseFiles: ['src/**/*.{png,js,json}', '!src/assets/**/*', '!src/image/**/*'],
+        wxmlFiles: 'src/**/*.wxml'
     },
     dist: {
         baseDir: 'dist',
@@ -30,7 +35,7 @@ function lessCompile(){
         ).pipe(
             replace('.less', '.wxss')
         ).pipe(
-            gulp.dest(paths.dest(paths.dist.baseDir))
+            gulp.dest(paths.dist.baseDir)
         )
 }
 
