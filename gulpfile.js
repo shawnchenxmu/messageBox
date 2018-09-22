@@ -59,6 +59,12 @@ function cleanTmp(){
     return del(paths.tmp.baseDir)
 }
 
+gulp.task('watch', function(){
+    gulp.watch('./src/**/*.js', gulp.series('default'))
+    gulp.watch('./src/**/*.wxml', gulp.series('default'))
+    gulp.watch('./src/**/*.less', gulp.series('default'))
+})
+
 gulp.task('default', gulp.series(
     cleanTmp,
     copyBasicFiles,
