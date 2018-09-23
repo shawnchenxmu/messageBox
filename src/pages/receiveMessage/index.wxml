@@ -1,0 +1,3 @@
+<view>
+    <button bindtap="receiveMessage" >接收</button>
+</view>

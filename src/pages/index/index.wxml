@@ -13,8 +13,7 @@
 </view>
 -->
 
-<view>
-    <input value="{{messageContent}}" bindinput="getContent" id="sendContent" type="text" placeholder="输入文字" />
-    <button id="sendTabButton" type="default" size="defaultSize" plain="plain" bindtap="sendMessage" hover-class="defaultTap">发送</button>
-    <button id="receive" type="default" size="defaultSize" plain="plain" bindtap="defaultTap" hover-class="defaultTap">接收</button>
+<view class="sendContenPage">
+  <textarea placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
+  <button type="default" plain="plain" bindtap="sendMessage">发送</button>
 </view>

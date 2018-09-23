@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/receiveMessage/index",
     "pages/logs/logs"
   ],
   "window":{
@@ -8,5 +9,20 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color": "#7a7d82",
+    "selectedColor": "#202020",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "发送",
+        "size": "large"
+      },
+      {
+        "pagePath": "pages/receiveMessage/index",
+        "text": "接收"
+      }
+    ]
   }
 }
