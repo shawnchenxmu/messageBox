@@ -2,13 +2,34 @@
 //获取应用实例
 const app = getApp()
 
+var dayCount = function(){
+  var start = new Date("2018-04-05")
+  var now = new Date()
+  return parseInt((now - start) / (1000 * 60 * 60 * 24)) + 1
+}
+
 Page({
   data: {
-    motto: 'Hello World',
+    motto: dayCount(),
     messageContent: '',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    markers: [{
+      iconPath: "../../img/location.png",
+      id: 0,
+      latitude: 29,
+      longitude: 113,
+      width: 20,
+      height: 30
+    }, {
+      iconPath: "../../img/location.png",
+      id: 0,
+      latitude: 24,
+      longitude: 117.6,
+      width: 20,
+      height: 30
+    }]
   },
   //事件处理函数
   bindViewTap: function() {

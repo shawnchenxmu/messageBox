@@ -14,6 +14,16 @@
 -->
 
 <view class="sendContenPage">
+  <map class="map" scale="6" longitude="115.5" latitude="27"  markers="{{markers}}" style="width: 100%;"></map>
+  <view class="textbefore">
+    <text>猪猪昇和王大可在一起</text>
+  </view>
+  <view class="days">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view class="textafter">
+    <text class="user-motto">天</text>
+  </view>
   <textarea placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
-  <button type="default" plain="plain" bindtap="sendMessage">发送</button>
+  <button type="primary" plain="plain" bindtap="sendMessage">发送</button>
 </view>
