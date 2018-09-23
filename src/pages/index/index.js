@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    messageContent: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -42,6 +43,31 @@ Page({
         }
       })
     }
+  },
+  getContent: function(e) {
+    this.setData({
+      messageContent: e.detail.value
+    })
+  },
+  sendMessage: function() {
+    const _this = this
+    wx.request({
+      url: 'http://localhost:3000/sendText',
+      method: 'POST',
+      data: {
+        text: this.data.messageContent
+      },
+      success: function() {
+        _this.setData({
+          messageContent: '',
+        })
+        wx.showToast({
+          title: '发送成功',
+          duration: 1000,
+          icon: 'none'
+        })
+      }
+    })
   },
   getUserInfo: function(e) {
     console.log(e)

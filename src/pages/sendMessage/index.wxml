@@ -1,0 +1,4 @@
+<view>
+    <input type="text" placeholder="" />
+    <button type="default" size="defaultSize" loading="loading" plain="plain}" disabled="disabled" bindtap="defaultTap" hover-class="defaultTap">发送</button>
+</view>
