@@ -7,8 +7,9 @@ const replace = require('gulp-replace')
 const paths = {
     src: {
         baseDir: 'src',
-        imgDir: 'src/img',
+        imgDir: 'src/image',
         lessDir: 'src/assets/less',
+        imageFiles: ['src/image/*.{png,jpg,jpeg,gif}'],
         lessFiles: 'src/**/*.less',
         baseFiles: ['src/**/*.{png,js,json}', '!src/assets/**/*', '!src/image/**/*'],
         wxmlFiles: 'src/**/*.wxml'
@@ -45,6 +46,12 @@ function copyBasicFiles(){
         .pipe(gulp.dest(paths.dist.baseDir))
 }
 
+// 复制图片
+function copyImage(){
+    return gulp.src(paths.src.imageFiles, {})
+        .pipe(gulp.dest(paths.dist.imgDir))
+}
+
 // 复制 WXML
 function copyWXML(){
     return gulp.src(paths.src.wxmlFiles, {})
@@ -68,6 +75,7 @@ gulp.task('watch', function(){
 gulp.task('default', gulp.series(
     cleanTmp,
     copyBasicFiles,
+    copyImage,
     lessCompile,
     copyWXML
 ))
