@@ -1,3 +1,4 @@
-<view>
-    <button bindtap="receiveMessage" >接收</button>
+<view class="receiveContentPage">
+    <text>{{ motto }}</text>
+    <button type="primary" plain="plain" bindtap="receiveMessage" >接收</button>
 </view>

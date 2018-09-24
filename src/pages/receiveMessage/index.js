@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '猜猜你会看到啥?',
     messageContent: '',
     userInfo: {},
     hasUserInfo: false,
@@ -52,17 +52,15 @@ Page({
   receiveMessage: function() {
     const _this = this
     wx.request({
-      url: 'http://localhost:3000/sendText',
-      method: 'POST',
-      data: {
-        text: this.data.messageContent
-      },
-      success: function() {
+      url: 'http://localhost:3000/receiveText',
+      method: 'GET',
+      success: function(data) {
+        console.log(data)
         _this.setData({
-          messageContent: '',
+          motto: data.data.text
         })
         wx.showToast({
-          title: '发送成功',
+          title: '接收成功',
           duration: 1000,
           icon: 'none'
         })

@@ -76,7 +76,8 @@ Page({
       url: 'http://localhost:3000/sendText',
       method: 'POST',
       data: {
-        text: this.data.messageContent
+        text: this.data.messageContent,
+        type: 'text'
       },
       success: function() {
         _this.setData({
