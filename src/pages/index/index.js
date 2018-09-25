@@ -13,6 +13,7 @@ Page({
     motto: dayCount(),
     messageContent: '',
     userInfo: {},
+    imageUrl: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     markers: [{
@@ -44,8 +45,6 @@ Page({
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
@@ -53,7 +52,6 @@ Page({
         })
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
@@ -68,6 +66,46 @@ Page({
   getContent: function(e) {
     this.setData({
       messageContent: e.detail.value
+    })
+  },
+  pickImage: function() {
+    const _this = this
+    wx.chooseImage({
+      count: 1, 
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: function(res){
+        const tempFilePaths = res.tempFilePaths;
+        _this.setData({
+          imageUrl: tempFilePaths
+        })
+      },
+      fail: function(res) {
+        console.log('fail', res)
+      },
+      complete: function(res) {
+        console.log('complete', res)
+      }
+    })
+  },
+  sendImage: function() {
+    const _this = this
+    wx.uploadFile({
+      url: 'http://localhost:3000/sendImage',
+      filePath: this.data.imageUrl[0],
+      name: 'image',
+      header: {
+        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryCm5uzQJT35A903Am'
+      },
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(res) {
+        console.log('fail', res)
+      },
+      complete: function(res) {
+        console.log('complete', res)
+      }
     })
   },
   sendMessage: function() {
