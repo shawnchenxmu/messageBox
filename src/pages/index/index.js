@@ -97,6 +97,10 @@ Page({
       header: {
         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryCm5uzQJT35A903Am'
       },
+      formData: {
+        type: 'image',
+        name: this.data.userInfo.nickName,
+      },
       success: function(res) {
         console.log(res)
       },
@@ -114,8 +118,9 @@ Page({
       url: 'http://localhost:3000/sendText',
       method: 'POST',
       data: {
-        text: this.data.messageContent,
-        type: 'text'
+        content: this.data.messageContent,
+        type: 'text',
+        name: this.data.userInfo.nickName
       },
       success: function() {
         _this.setData({
