@@ -1,4 +1,4 @@
 <view class="receiveContentPage">
-    <text>{{ motto }}</text>
-    <button type="primary" plain="plain" bindtap="receiveMessage" >接收</button>
+    <text wx:if="{{receiveData.type == 'text'}}">{{ receiveData.content }}</text>
+    <image wx:if="{{receiveData.type == 'image'}}" src="{{receiveData.content}}"></image>
 </view>

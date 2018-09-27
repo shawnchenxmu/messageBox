@@ -13,7 +13,6 @@ Page({
     motto: dayCount(),
     messageContent: '',
     userInfo: {},
-    imageUrl: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     markers: [{
@@ -89,6 +88,14 @@ Page({
     })
   },
   sendImage: function() {
+    if(!this.data.imageUrl || !this.data.imageUrl.length) {
+      wx.showToast({
+        title: '选图片呐傻大可！！！',
+        duration: 1000,
+        icon: 'none'
+      })
+      return
+    }
     const _this = this
     wx.uploadFile({
       url: 'http://localhost:3000/sendImage',
@@ -114,6 +121,14 @@ Page({
   },
   sendMessage: function() {
     const _this = this
+    if(!this.data.messageContent.length) {
+      wx.showToast({
+        title: '啥都没写要我发啥子呀！',
+        duration: 1000,
+        icon: 'none'
+      })
+      return
+    }
     wx.request({
       url: 'http://localhost:3000/sendText',
       method: 'POST',

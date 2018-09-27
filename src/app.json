@@ -16,12 +16,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "发送",
+        "iconPath": "./img/fox.png",
+        "selectedIconPath": "./img/fox1.png",
         "size": "large"
       },
       {
         "pagePath": "pages/receiveMessage/index",
-        "text": "接收"
+        "iconPath": "./img/prince.png",
+        "selectedIconPath": "./img/prince1.png",
+        "size": "large"
       }
     ]
   }
