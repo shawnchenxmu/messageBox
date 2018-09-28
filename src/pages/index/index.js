@@ -18,15 +18,15 @@ Page({
     markers: [{
       iconPath: "../../img/location.png",
       id: 0,
-      latitude: 29,
-      longitude: 113,
+      latitude: 51,
+      longitude: 0,
       width: 20,
       height: 30
     }, {
       iconPath: "../../img/location.png",
-      id: 0,
-      latitude: 24,
-      longitude: 117.6,
+      id: 1,
+      latitude: 31,
+      longitude: 121.6,
       width: 20,
       height: 30
     }]

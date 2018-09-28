@@ -14,8 +14,8 @@
 -->
 
 <view class="sendContentPage">
-  <!-- <map class="map" scale="6" longitude="115.5" latitude="27"  markers="{{markers}}" style="width: 100%;"></map>
-  <view class="textbefore">
+  <map class="map" show-location="{{false}}" longitude="0" latitude="51" scale="5" markers="{{markers}}" style="width: 100%;"></map>
+  <!-- <view class="textbefore">
     <text>猪猪昇和王大可在一起</text>
   </view>
   <view class="days">
