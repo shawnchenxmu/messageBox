@@ -16,19 +16,19 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     markers: [{
-      iconPath: "../../img/location.png",
+      iconPath: "../../img/wake.jpg",
       id: 0,
       latitude: 51,
       longitude: 0,
-      width: 20,
-      height: 30
+      width: 50,
+      height: 50
     }, {
-      iconPath: "../../img/location.png",
+      iconPath: "../../img/cs.jpg",
       id: 1,
       latitude: 31,
       longitude: 121.6,
-      width: 20,
-      height: 30
+      width: 50,
+      height: 50
     }]
   },
   //事件处理函数
@@ -87,7 +87,16 @@ Page({
       }
     })
   },
-  sendImage: function() {
+  sendMessage: function() {
+    const _this = this
+    if(!this.data.messageContent.length) {
+      wx.showToast({
+        title: '啥都没写要我发啥子呀！',
+        duration: 1000,
+        icon: 'none'
+      })
+      return
+    }
     if(!this.data.imageUrl || !this.data.imageUrl.length) {
       wx.showToast({
         title: '选图片呐傻大可！！！',
@@ -96,7 +105,6 @@ Page({
       })
       return
     }
-    const _this = this
     wx.uploadFile({
       url: 'http://localhost:3000/sendImage',
       filePath: this.data.imageUrl[0],
@@ -118,17 +126,6 @@ Page({
         console.log('complete', res)
       }
     })
-  },
-  sendMessage: function() {
-    const _this = this
-    if(!this.data.messageContent.length) {
-      wx.showToast({
-        title: '啥都没写要我发啥子呀！',
-        duration: 1000,
-        icon: 'none'
-      })
-      return
-    }
     wx.request({
       url: 'http://localhost:3000/sendText',
       method: 'POST',

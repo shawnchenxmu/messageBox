@@ -25,8 +25,7 @@
     <text class="user-motto">天</text>
   </view> -->
   <textarea placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
-  <button bindtap="pickImage">选择图片</button>
-  <button bindtap="sendImage">发送图片</button>
-  <image src="{{imageUrl}}"></image>
+  <button class="addImageButton" wx:if="{{!imageUrl}}" bindtap="pickImage">+</button>
+  <image wx:if="{{!!imageUrl}}" src="{{imageUrl}}"></image>
   <button id="sendButton" type="primary" plain="plain" bindtap="sendMessage">发送</button>
 </view>
