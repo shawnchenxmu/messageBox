@@ -1,21 +1,6 @@
-<!--index.wxml
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
--->
-
-<view class="sendContentPage">
-  <map class="map" show-location="{{false}}" longitude="0" latitude="51" scale="5" markers="{{markers}}" style="width: 100%;"></map>
-  <!-- <view class="textbefore">
+<view class="indexPage">
+  <map class="map" show-location="{{false}}" longitude="0" latitude="51" scale="1" markers="{{markers}}" style="width: 100%;"></map>
+  <view class="textbefore">
     <text>猪猪昇和王大可在一起</text>
   </view>
   <view class="days">
@@ -23,9 +8,6 @@
   </view>
   <view class="textafter">
     <text class="user-motto">天</text>
-  </view> -->
-  <textarea placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
-  <button class="addImageButton" wx:if="{{!imageUrl}}" bindtap="pickImage">+</button>
-  <image wx:if="{{!!imageUrl}}" src="{{imageUrl}}"></image>
-  <button id="sendButton" type="primary" plain="plain" bindtap="sendMessage">发送</button>
+  </view>
+  <button id="loginButton" type="primary" plain="plain" bindtap="login">登录</button>
 </view>

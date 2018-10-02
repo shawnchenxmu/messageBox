@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/sendMessage/index",
     "pages/receiveMessage/index",
     "pages/logs/logs"
   ],
@@ -15,7 +16,7 @@
     "selectedColor": "#202020",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/sendMessage/index",
         "iconPath": "./img/fox.png",
         "selectedIconPath": "./img/fox1.png",
         "size": "large"

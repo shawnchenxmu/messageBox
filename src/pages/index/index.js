@@ -67,83 +67,9 @@ Page({
       messageContent: e.detail.value
     })
   },
-  pickImage: function() {
-    const _this = this
-    wx.chooseImage({
-      count: 1, 
-      sizeType: ['original'],
-      sourceType: ['album', 'camera'],
-      success: function(res){
-        const tempFilePaths = res.tempFilePaths;
-        _this.setData({
-          imageUrl: tempFilePaths
-        })
-      },
-      fail: function(res) {
-        console.log('fail', res)
-      },
-      complete: function(res) {
-        console.log('complete', res)
-      }
-    })
-  },
-  sendMessage: function() {
-    const _this = this
-    if(!this.data.messageContent.length) {
-      wx.showToast({
-        title: '啥都没写要我发啥子呀！',
-        duration: 1000,
-        icon: 'none'
-      })
-      return
-    }
-    if(!this.data.imageUrl || !this.data.imageUrl.length) {
-      wx.showToast({
-        title: '选图片呐傻大可！！！',
-        duration: 1000,
-        icon: 'none'
-      })
-      return
-    }
-    wx.uploadFile({
-      url: 'http://localhost:3000/sendImage',
-      filePath: this.data.imageUrl[0],
-      name: 'image',
-      header: {
-        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryCm5uzQJT35A903Am'
-      },
-      formData: {
-        type: 'image',
-        name: this.data.userInfo.nickName,
-      },
-      success: function(res) {
-        console.log(res)
-      },
-      fail: function(res) {
-        console.log('fail', res)
-      },
-      complete: function(res) {
-        console.log('complete', res)
-      }
-    })
-    wx.request({
-      url: 'http://localhost:3000/sendText',
-      method: 'POST',
-      data: {
-        content: this.data.messageContent,
-        type: 'text',
-        name: this.data.userInfo.nickName
-      },
-      success: function() {
-        _this.setData({
-          messageContent: '',
-        })
-        wx.showToast({
-          title: '发送成功',
-          duration: 1000,
-          icon: 'none'
-        })
-      }
+  login: function() {
+    wx.switchTab({
+      url: "/pages/sendMessage/index"
     })
   },
   getUserInfo: function(e) {
