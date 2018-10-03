@@ -106,7 +106,7 @@ Page({
       return
     }
     wx.uploadFile({
-      url: 'http://localhost:3000/sendImage',
+      url: 'https://www.alloween.xyz/sendImage',
       filePath: this.data.imageUrl[0],
       name: 'image',
       header: {
@@ -114,10 +114,13 @@ Page({
       },
       formData: {
         type: 'image',
-        name: this.data.userInfo.nickName,
+        name: this.data.userInfo.nickName
       },
       success: function(res) {
         console.log(res)
+        _this.setData({
+          imageUrl: '',
+        })
       },
       fail: function(res) {
         console.log('fail', res)
@@ -127,7 +130,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://localhost:3000/sendText',
+      url: 'https://www.alloween.xyz/sendText',
       method: 'POST',
       data: {
         content: this.data.messageContent,
@@ -140,7 +143,7 @@ Page({
         })
         wx.showToast({
           title: '发送成功',
-          duration: 1000,
+          duration: 2000,
           icon: 'none'
         })
       }

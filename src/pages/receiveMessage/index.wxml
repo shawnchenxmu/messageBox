@@ -1,4 +1,4 @@
 <view class="receiveContentPage">
-    <text wx:if="{{receiveData.type == 'text'}}">{{ receiveData.content }}</text>
-    <image wx:if="{{receiveData.type == 'image'}}" src="{{receiveData.content}}"></image>
+    <text>{{ receiveData.text }}</text>
+    <image mode="aspectFill" wx:if="{{!!receiveData.image}}" src="{{receiveData.image}}"></image>
 </view>

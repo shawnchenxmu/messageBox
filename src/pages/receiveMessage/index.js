@@ -7,8 +7,7 @@ Page({
     messageContent: '',
     userInfo: {},
     receiveData: {
-      type: 'text',
-      content: '猜猜你会看到啥?'
+      text: '猜猜你会看到啥?'
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -42,6 +41,8 @@ Page({
         }
       })
     }
+  },
+  onShow() {
     wx.showLoading({
       title: '加载中...'
     })
@@ -50,7 +51,7 @@ Page({
   receiveMessage: function() {
     const _this = this
     wx.request({
-      url: 'http://localhost:3000/receiveText',
+      url: 'https://www.alloween.xyz/receiveText',
       method: 'POST',
       data: {
         name: this.data.userInfo.nickName
@@ -59,8 +60,8 @@ Page({
         console.log(data)
         _this.setData({
           receiveData: {
-            type: data.data.type,
-            content: data.data.content
+            text: data.data.text,
+            image: data.data.image
           }
         })
         wx.hideLoading()
