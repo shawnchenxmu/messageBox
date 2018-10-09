@@ -1,5 +1,5 @@
 <view class="sendContentPage">
-  <textarea placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
+  <textarea placeholder-class="center" placeholder="输入文字" maxlength="-1" value="{{messageContent}}" bindinput="getContent" />
   <button class="addImageButton" wx:if="{{!imageUrl}}" bindtap="pickImage">+</button>
   <image wx:if="{{!!imageUrl}}" mode="aspectFit" src="{{imageUrl}}"></image>
   <button id="sendButton" type="primary" plain="plain" bindtap="sendMessage">发送</button>
