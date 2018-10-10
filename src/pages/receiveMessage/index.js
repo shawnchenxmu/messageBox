@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const innerAudioContext = wx.createInnerAudioContext()
+innerAudioContext.src = 'http://localhost:3000/music/小幸运_田馥甄.mp3'
 
 Page({
   data: {
@@ -10,7 +12,9 @@ Page({
       text: '猜猜你会看到啥?'
     },
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    playerStatus: false,
+    playerIcon: '../../img/play.png'
   },
   bindViewTap: function() {
     wx.navigateTo({
@@ -73,6 +77,14 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  audioControl: function(e) {
+    const icon = this.data.playerStatus ? '../../img/pause.png' : '../../img/play.png'
+    this.data.playerStatus ? innerAudioContext.play() : innerAudioContext.pause()
+    this.setData({
+      playerStatus: !this.data.playerStatus,
+      playerIcon: icon
     })
   }
 })

@@ -1,5 +1,5 @@
 <view class="receiveContentPage">
     <text>{{ receiveData.text }}</text>
     <image mode="aspectFill" wx:if="{{!!receiveData.image}}" src="{{receiveData.image}}"></image>
-    <audio name="小幸运" author="田馥甄" src="http://localhost:3000/audio/小幸运_田馥甄.mp3" id="myAudio" controls loop></audio>
+    <image bindtap="audioControl" src="{{playerIcon}}"></image>
 </view>
