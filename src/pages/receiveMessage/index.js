@@ -2,7 +2,6 @@
 //获取应用实例
 const app = getApp()
 const innerAudioContext = wx.createInnerAudioContext()
-innerAudioContext.src = 'http://localhost:3000/music/小幸运_田馥甄.mp3'
 
 Page({
   data: {
@@ -66,8 +65,10 @@ Page({
           receiveData: {
             text: data.data.text,
             image: data.data.image
-          }
+          },
+          playerIcon: '../../img/play.png'
         })
+        innerAudioContext.src = data.data.music
         wx.hideLoading()
       }
     })
