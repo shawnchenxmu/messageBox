@@ -1,5 +1,9 @@
 <view class="receiveContentPage">
-    <text>{{ receiveData.text }}</text>
-    <image id="audioControl" bindtap="audioControl" src="{{playerIcon}}"></image>
-    <image id="imageData" mode="aspectFill" wx:if="{{!!receiveData.image}}" src="{{receiveData.image}}"></image>
+    <text class="receiveText">{{ receiveData.text }}</text>
+    <view class="music">
+        <text class="songName">{{ musicInfo.songName }}</text>
+        <text class="artist">{{ musicInfo.artist }}</text>
+        <image id="audioControl" bindtap="audioControl" src="{{ musicInfo.playerIcon }}"></image>
+    </view>
+    <image id="imageData" mode="aspectFill" wx:if="{{ !!receiveData.image }}" src="{{ receiveData.image }}"></image>
 </view>

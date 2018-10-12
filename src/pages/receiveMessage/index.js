@@ -12,8 +12,12 @@ Page({
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    playerStatus: false,
-    playerIcon: '../../img/play.png'
+    musicInfo: {
+      playerStatus: false,
+      playerIcon: '../../img/play.png',
+      songName: '',
+      artist: ''
+    }
   },
   bindViewTap: function() {
     wx.navigateTo({
@@ -21,6 +25,7 @@ Page({
     })
   },
   onLoad: function () {
+    this.getMusic()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -65,11 +70,27 @@ Page({
           receiveData: {
             text: data.data.text,
             image: data.data.image
-          },
-          playerIcon: '../../img/play.png'
+          }
         })
         innerAudioContext.src = data.data.music
         wx.hideLoading()
+      }
+    })
+  },
+  getMusic: function() {
+    const _this = this
+    wx.request({
+      url: 'https://www.alloween.xyz/getMusic',
+      method: 'GET',
+      success: function(data) {
+        console.log(data)
+        _this.setData({
+          musicInfo: {
+            songName: data.data.songName,
+            artist: data.data.artist
+          }
+        })
+        innerAudioContext.src = data.data.musicSrc
       }
     })
   },
@@ -81,11 +102,14 @@ Page({
     })
   },
   audioControl: function(e) {
-    const icon = this.data.playerStatus ? '../../img/pause.png' : '../../img/play.png'
-    this.data.playerStatus ? innerAudioContext.play() : innerAudioContext.pause()
+    let { musicInfo } = this.data
+    const icon = musicInfo.playerStatus ? '../../img/pause.png' : '../../img/play.png'
+    musicInfo.playerStatus ? innerAudioContext.play() : innerAudioContext.pause()
     this.setData({
-      playerStatus: !this.data.playerStatus,
-      playerIcon: icon
+      musicInfo: {
+        playerStatus: !musicInfo.playerStatus,
+        playerIcon: icon
+      }
     })
   }
 })
