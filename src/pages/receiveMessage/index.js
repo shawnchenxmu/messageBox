@@ -7,6 +7,7 @@ Page({
   data: {
     messageContent: '',
     userInfo: {},
+    prevCount: 1,
     receiveData: {
       text: '猜猜你会看到啥?'
     },
@@ -93,6 +94,9 @@ Page({
         innerAudioContext.src = data.data.musicSrc
       }
     })
+  },
+  onPullDownRefresh: function() {
+    console.log('onPullDownRefresh')
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
