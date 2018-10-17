@@ -60,7 +60,7 @@ Page({
   receiveMessage: function() {
     const _this = this
     wx.request({
-      url: 'https://www.alloween.xyz/receiveText',
+      url: '%domain%/receiveText',
       method: 'POST',
       data: {
         name: this.data.userInfo.nickName
@@ -81,7 +81,7 @@ Page({
   getMusic: function() {
     const _this = this
     wx.request({
-      url: 'https://www.alloween.xyz/getMusic',
+      url: '%domain%/getMusic',
       method: 'GET',
       success: function(data) {
         console.log(data)

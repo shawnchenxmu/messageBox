@@ -106,7 +106,7 @@ Page({
       return
     }
     wx.uploadFile({
-      url: 'https://www.alloween.xyz/sendImage',
+      url: '%domain%/sendImage',
       filePath: this.data.imageUrl[0],
       name: 'image',
       header: {
@@ -130,7 +130,7 @@ Page({
       }
     })
     wx.request({
-      url: 'https://www.alloween.xyz/sendText',
+      url: '%domain%/sendText',
       method: 'POST',
       data: {
         content: this.data.messageContent,
