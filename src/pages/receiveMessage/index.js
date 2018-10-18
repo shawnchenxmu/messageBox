@@ -9,7 +9,8 @@ Page({
     userInfo: {},
     prevCount: 1,
     receiveData: {
-      text: '猜猜你会看到啥?'
+      text: '猜猜你会看到啥?',
+      imageDataStatus: false
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -59,6 +60,9 @@ Page({
   },
   receiveMessage: function() {
     const _this = this
+    this.setData({
+      imageDataStatus: false
+    })
     wx.request({
       url: '%domain%/receiveText',
       method: 'POST',
@@ -70,11 +74,21 @@ Page({
         _this.setData({
           receiveData: {
             text: data.data.text,
-            image: data.data.image
+            image: data.data.image.image,
+            imagePlaceholder: `${data.data.image.imagePlaceholder}`,
+            imageDataStatus: true
           }
         })
         innerAudioContext.src = data.data.music
         wx.hideLoading()
+      }
+    })
+  },
+  imageLoaded: function() {
+    this.setData({
+      receiveData: {
+        ...this.data.receiveData,
+        imageDataStatus: true
       }
     })
   },

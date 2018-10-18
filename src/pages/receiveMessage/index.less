@@ -1,11 +1,24 @@
 .receiveContentPage {
     height: 100%;
     position: relative;
+    #imagePlaceholder {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        filter: blur(50px);
+        transform: scale(1);
+    }
     #imageData {
         height: 100%;
         width: 100%;
+        transition: opacity 1s linear;
     }
-
+    .unloaded {
+        opacity: 0;
+    }
+    .loaded {
+        opacity: 1;
+    }
     .receiveText {
         top: 15px;
         display: block;
