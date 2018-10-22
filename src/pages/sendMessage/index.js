@@ -117,16 +117,22 @@ Page({
         name: this.data.userInfo.nickName
       },
       success: function(res) {
-        console.log(res)
+        wx.showToast({
+          title: '发送成功',
+          duration: 2000,
+          icon: 'none'
+        })
         _this.setData({
           imageUrl: '',
         })
       },
       fail: function(res) {
+        wx.showToast({
+          title: '发送失败',
+          duration: 2000,
+          icon: 'none'
+        })
         console.log('fail', res)
-      },
-      complete: function(res) {
-        console.log('complete', res)
       }
     })
     wx.request({
@@ -140,11 +146,6 @@ Page({
       success: function() {
         _this.setData({
           messageContent: '',
-        })
-        wx.showToast({
-          title: '发送成功',
-          duration: 2000,
-          icon: 'none'
         })
       }
     })
