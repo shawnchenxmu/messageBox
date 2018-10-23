@@ -1,4 +1,4 @@
-<view class="receiveContentPage">
+<view class="receiveContentPage" bindtouchstart="touchStart" bindtouchend="touchEnd">
     <text class="receiveText">{{ receiveData.text }}</text>
     <view class="music">
         <text class="songName">{{ musicInfo.songName }}</text>
@@ -6,5 +6,5 @@
         <image id="audioControl" bindtap="audioControl" src="{{ musicInfo.playerIcon }}"></image>
     </view>
     <image id="imageData" class="{{ receiveData.imageDataStatus ? 'loaded' : 'unloaded' }}" mode="aspectFill" wx:if="{{ !!receiveData.image }}" src="{{ receiveData.image }}" bindload="imageLoaded"></image>
-    <image id="imagePlaceholder" mode="aspectFill" wx:if="{{ !!receiveData.imagePlaceholder }}" src="{{ receiveData.imagePlaceholder }}" bindload="placeholderLoaded"></image>
+    <image id="imagePlaceholder" mode="aspectFill" wx:if="{{ !!receiveData.imagePlaceholder }}" src="{{ receiveData.imagePlaceholder }}"></image>
 </view>

@@ -68,8 +68,8 @@ Page({
     })
   },
   login: function() {
-    wx.switchTab({
-      url: "/pages/sendMessage/index"
+    wx.navigateTo({
+      url: "../sendMessage/index"
     })
   },
   getUserInfo: function(e) {

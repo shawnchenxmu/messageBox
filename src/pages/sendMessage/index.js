@@ -1,6 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var time = 0
+var touchInfo = {
+  touchStart: 0,
+  touchEnd: 0
+}
+var interval = null
 
 var dayCount = function(){
   var start = new Date("2018-04-05")
@@ -31,12 +37,6 @@ Page({
       height: 50
     }]
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -61,6 +61,25 @@ Page({
         }
       })
     }
+  },
+  touchStart: function(e) {
+    touchInfo.touchStart = e.touches[0].pageX
+    console.log('start', touchInfo.touchStart)
+    interval = setInterval(function() {
+      time++
+    }, 100)
+  },
+  touchEnd: function(e) {
+    touchInfo.touchEnd = e.changedTouches[0].pageX
+    console.log('end', touchInfo.touchEnd)
+    if (touchInfo.touchStart - touchInfo.touchEnd >= 80 && time < 10) {
+      console.log('向左滑动')
+      wx.navigateTo({
+        url: '../receiveMessage/index'
+      })
+    }
+    clearInterval(interval)
+    time = 0
   },
   getContent: function(e) {
     this.setData({

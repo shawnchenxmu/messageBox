@@ -1,6 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var time = 0
+var touchInfo = {
+  touchStart: 0,
+  touchEnd: 0
+}
+var interval = null
 const innerAudioContext = wx.createInnerAudioContext()
 
 Page({
@@ -20,11 +26,6 @@ Page({
       songName: '',
       artist: ''
     }
-  },
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
     this.getMusic()
@@ -57,6 +58,23 @@ Page({
       title: '加载中...'
     })
     this.receiveMessage()
+  },
+  touchStart: function(e) {
+    touchInfo.touchStart = e.touches[0].pageX
+    interval = setInterval(function() {
+      time++
+    }, 100)
+  },
+  touchEnd: function(e) {
+    touchInfo.touchEnd = e.changedTouches[0].pageX
+    if (touchInfo.touchEnd - touchInfo.touchStart >= 80 && time < 10) {
+      console.log('向右滑动')
+      wx.navigateTo({
+        url: '../sendMessage/index'
+      })
+    }
+    clearInterval(interval)
+    time = 0
   },
   receiveMessage: function() {
     const _this = this
