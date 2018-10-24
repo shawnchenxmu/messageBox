@@ -11,14 +11,14 @@ Page({
     receiveData: {
       text: '猜猜你会看到啥?'
     },
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     musicInfo: {
       playerStatus: false,
       playerIcon: '../../img/play.png',
-      songName: '',
-      artist: ''
-    }
+      songName: '未获取歌曲',
+      artist: '未知艺术家'
+    },
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   bindViewTap: function() {
     wx.navigateTo({
@@ -71,9 +71,9 @@ Page({
           receiveData: {
             text: data.data.text,
             image: data.data.image
-          }
+          },
+          prevCount: 1
         })
-        innerAudioContext.src = data.data.music
         wx.hideLoading()
       }
     })
@@ -85,18 +85,45 @@ Page({
       method: 'GET',
       success: function(data) {
         console.log(data)
-        _this.setData({
-          musicInfo: {
-            songName: data.data.songName,
-            artist: data.data.artist
-          }
-        })
-        innerAudioContext.src = data.data.musicSrc
+        // _this.setData({
+        //   musicInfo: {
+        //     ..._this.data.musicInfo,
+        //     songName: data.data.songName,
+        //     artist: data.data.artist
+        //   }
+        // })
+        innerAudioContext.src = data.data.music
       }
     })
   },
   onPullDownRefresh: function() {
-    console.log('onPullDownRefresh')
+    wx.showLoading()
+    wx.stopPullDownRefresh()
+    const _this = this
+    wx.request({
+      url: 'https://www.alloween.xyz/getHistory',
+      method: 'POST',
+      data: {
+        name: this.data.userInfo.nickName,
+        prevCount: this.data.prevCount
+      },
+      success: function(data) {
+        console.log(data)
+        _this.setData({
+          prevCount: _this.data.prevCount + 1,
+          receiveData: {
+            text: data.data.text,
+            image: data.data.image
+          },
+          // musicInfo: {
+          //   songName: data.data.music.songName,
+          //   artist: data.data.music.artist
+          // }
+        })
+        // innerAudioContext.src = data.data.music.musicSrc
+        wx.hideLoading()
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -106,11 +133,13 @@ Page({
     })
   },
   audioControl: function(e) {
+    console.log(innerAudioContext)
     let { musicInfo } = this.data
-    const icon = musicInfo.playerStatus ? '../../img/pause.png' : '../../img/play.png'
-    musicInfo.playerStatus ? innerAudioContext.play() : innerAudioContext.pause()
+    const icon = musicInfo.playerStatus ? '../../img/play.png' : '../../img/pause.png'
+    musicInfo.playerStatus ? innerAudioContext.pause() :  innerAudioContext.play()
     this.setData({
       musicInfo: {
+        ...musicInfo,
         playerStatus: !musicInfo.playerStatus,
         playerIcon: icon
       }
