@@ -3,6 +3,7 @@ const del = require('del')
 const less = require('gulp-less')
 const rename = require('gulp-rename')
 const replace = require('gulp-replace')
+const domain = process.env.NODE_ENV == 'development' ? 'http://localhost:4000' : 'https://www.alloween.xyz'
 
 const paths = {
     src: {
@@ -43,6 +44,7 @@ function lessCompile(){
 // 复制基础文件
 function copyBasicFiles(){
     return gulp.src(paths.src.baseFiles, {})
+        .pipe(replace('%domain%', domain))
         .pipe(gulp.dest(paths.dist.baseDir))
 }
 

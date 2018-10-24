@@ -1,6 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var time = 0
+var touchInfo = {
+  touchStart: 0,
+  touchEnd: 0
+}
+var interval = null
 const innerAudioContext = wx.createInnerAudioContext()
 
 Page({
@@ -9,7 +15,8 @@ Page({
     userInfo: {},
     prevCount: 1,
     receiveData: {
-      text: '猜猜你会看到啥?'
+      text: '猜猜你会看到啥?',
+      imageDataStatus: false
     },
     musicInfo: {
       playerStatus: false,
@@ -19,11 +26,6 @@ Page({
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
     this.getMusic()
@@ -57,10 +59,30 @@ Page({
     })
     this.receiveMessage()
   },
+  touchStart: function(e) {
+    touchInfo.touchStart = e.touches[0].pageX
+    interval = setInterval(function() {
+      time++
+    }, 100)
+  },
+  touchEnd: function(e) {
+    touchInfo.touchEnd = e.changedTouches[0].pageX
+    if (touchInfo.touchEnd - touchInfo.touchStart >= 80 && time < 10) {
+      console.log('向右滑动')
+      wx.navigateTo({
+        url: '../sendMessage/index'
+      })
+    }
+    clearInterval(interval)
+    time = 0
+  },
   receiveMessage: function() {
     const _this = this
+    this.setData({
+      imageDataStatus: false
+    })
     wx.request({
-      url: 'https://www.alloween.xyz/receiveText',
+      url: '%domain%/receiveText',
       method: 'POST',
       data: {
         name: this.data.userInfo.nickName
@@ -70,7 +92,9 @@ Page({
         _this.setData({
           receiveData: {
             text: data.data.text,
-            image: data.data.image
+          image: data.data.image.image,
+          imagePlaceholder: `${data.data.image.imagePlaceholder}`,
+          imageDataStatus: true
           },
           prevCount: 1
         })
@@ -78,10 +102,18 @@ Page({
       }
     })
   },
+  imageLoaded: function() {
+    this.setData({
+      receiveData: {
+        ...this.data.receiveData,
+        imageDataStatus: true
+      }
+    })
+  },
   getMusic: function() {
     const _this = this
     wx.request({
-      url: 'https://www.alloween.xyz/getMusic',
+      url: '%domain%/getMusic',
       method: 'GET',
       success: function(data) {
         console.log(data)

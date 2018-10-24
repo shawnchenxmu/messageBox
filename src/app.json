@@ -9,24 +9,7 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  },
-  "tabBar":{
-    "color": "#7a7d82",
-    "selectedColor": "#202020",
-    "list": [
-      {
-        "pagePath": "pages/sendMessage/index",
-        "iconPath": "./img/fox.png",
-        "selectedIconPath": "./img/fox1.png",
-        "size": "large"
-      },
-      {
-        "pagePath": "pages/receiveMessage/index",
-        "iconPath": "./img/prince.png",
-        "selectedIconPath": "./img/prince1.png",
-        "size": "large"
-      }
-    ]
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
   }
 }
