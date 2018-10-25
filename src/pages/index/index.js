@@ -32,11 +32,6 @@ Page({
     }]
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -68,7 +63,7 @@ Page({
     })
   },
   login: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "../sendMessage/index"
     })
   },

@@ -69,7 +69,7 @@ Page({
     touchInfo.touchEnd = e.changedTouches[0].pageX
     if (touchInfo.touchEnd - touchInfo.touchStart >= 80 && time < 10) {
       console.log('向右滑动')
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../sendMessage/index'
       })
     }

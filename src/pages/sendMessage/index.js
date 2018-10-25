@@ -74,7 +74,7 @@ Page({
     console.log('end', touchInfo.touchEnd)
     if (touchInfo.touchStart - touchInfo.touchEnd >= 80 && time < 10) {
       console.log('向左滑动')
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../receiveMessage/index'
       })
     }
