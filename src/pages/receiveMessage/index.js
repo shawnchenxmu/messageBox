@@ -94,7 +94,6 @@ Page({
             text: data.data.text,
           image: data.data.image.image,
           imagePlaceholder: `${data.data.image.imagePlaceholder}`,
-          imageDataStatus: true
           },
           prevCount: 1
         })
