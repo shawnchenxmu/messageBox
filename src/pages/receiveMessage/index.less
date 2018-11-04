@@ -15,18 +15,49 @@
     }
     .unloaded {
         opacity: 1;
+        z-index: -10;
     }
     .loaded {
         opacity: 0;
     }
-    .receiveText {
+    .textField {
         top: 60px;
+        font-size: 18px;
         display: block;
         position: absolute;
         text-align: center;
-        font-size: 16px;
         color: #fff;
         width: 100%;
+        height: 100px;
+        .receiveText{
+            text-shadow: 1px 1px 6px #000;
+            display: block;
+            width: 80%;
+            margin: auto;
+        }
+    }
+
+    .dateField {
+        font-family: sans-serif;
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        color: #fff;
+        height: 200px;
+        text-shadow:5px 2px 6px #000;
+        .date {
+            position: absolute;
+            font-size: 120px;
+            left: 30px;
+            font-weight: 100;
+            top: -90px;
+        }
+        .day {
+            position: absolute;
+            font-size: 20px;
+            left: 30px;
+            top: 60px;
+        }
     }
 
     button {

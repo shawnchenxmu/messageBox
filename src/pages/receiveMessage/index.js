@@ -9,15 +9,29 @@ var touchInfo = {
 var interval = null
 const innerAudioContext = wx.createInnerAudioContext()
 
+const date = new Date()
+
+const dayCovert = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
+const monthConvert = ["JAN.", "FEB.", "MAR.", "APR.", "MAY.", "JUNE.", "JULY.", "AUG.", "SEPT.", "OCT.", "NOV.", "DEC."]
+
+const day = dayCovert[date.getDay()]
+const month = monthConvert[date.getMonth()]
+var today = date.getDate()
+
+today = today.length > 1 ? today : '0' + today
+
 Page({
   data: {
     messageContent: '',
     userInfo: {},
+    day: month+day,
+    date: today,
     prevCount: 1,
     receiveData: {
       text: '猜猜你会看到啥?',
       imageDataStatus: false
     },
+    imgPlaceholder: '../../img/placeholder.jpg',
     musicInfo: {
       playerStatus: false,
       playerIcon: '../../img/play.png',
@@ -92,8 +106,7 @@ Page({
         _this.setData({
           receiveData: {
             text: data.data.text,
-          image: data.data.image.image,
-          imagePlaceholder: `${data.data.image.imagePlaceholder}`,
+            image: data.data.image.image
           },
           prevCount: 1
         })
