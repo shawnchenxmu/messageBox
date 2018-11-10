@@ -11,16 +11,16 @@
     #imageData {
         height: 100%;
         width: 100%;
-        transition: opacity 1s linear;
+        transition: opacity 5s linear;
     }
     .unloaded {
         opacity: 1;
-        z-index: -10;
     }
     .loaded {
         opacity: 0;
     }
     .textField {
+        z-index: 10;
         top: 60px;
         font-size: 18px;
         display: block;
@@ -38,6 +38,7 @@
     }
 
     .dateField {
+        z-index: 10;
         font-family: sans-serif;
         position: absolute;
         width: 100%;
@@ -55,7 +56,7 @@
         .day {
             position: absolute;
             font-size: 20px;
-            left: 30px;
+            left: 40px;
             top: 60px;
         }
     }

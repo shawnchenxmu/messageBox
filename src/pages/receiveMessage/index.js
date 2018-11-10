@@ -16,7 +16,7 @@ const monthConvert = ["JAN.", "FEB.", "MAR.", "APR.", "MAY.", "JUNE.", "JULY.", 
 
 const day = dayCovert[date.getDay()]
 const month = monthConvert[date.getMonth()]
-var today = date.getDate()
+var today = date.getDate().toString()
 
 today = today.length > 1 ? today : '0' + today
 
@@ -42,7 +42,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
-    this.getMusic()
+    // this.getMusic()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
